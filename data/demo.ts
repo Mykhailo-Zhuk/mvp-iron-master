@@ -1,0 +1,146 @@
+import type { Restaurant, Service } from "@/lib/schemas";
+
+/**
+ * СТО IRON MASTER — каталог послуг
+ * Кузовний ремонт та слюсарні роботи в Києві. Два цехи: слюсарний та малярно-кузовний. Сучасне обладнання, досвідчені майстри, гарантія на роботи.
+ */
+
+export const DEMO_RESTAURANT: Restaurant = {
+  id: "iron-master",
+  name: "СТО IRON MASTER",
+  description: "Кузовний ремонт та слюсарні роботи в Києві. Два цехи: слюсарний та малярно-кузовний. Сучасне обладнання, досвідчені майстри, гарантія на роботи.",
+  logo: "/images/demo-logo.svg",
+  address: "Київ, проспект Науки, 51, Голосіївський район",
+  phone: "+38 (096) 688-14-14",
+  currency: "UAH",
+  categories: [],
+  items: [],
+};
+
+export const DEMO_SERVICES: Service[] = [
+  {
+    id: "kuzov-remont-bampera",
+    name: "Ремонт заднього бампера",
+    description: "Відновлення геометрії, рихтування, фарбування заднього бампера. Використовуємо оригінальні матеріали та сучасні технології.",
+    duration: 240,
+    price: 4500,
+    provider: "СТО IRON MASTER",
+    category: "kuzov",
+    masterName: "Олександр Коваль",
+    available: true,
+  },
+  {
+    id: "kuzov-farbuvannya-elementa",
+    name: "Фарбування елемента кузова",
+    description: "Повне фарбування однієї деталі (двері, капот, крило). Підбір кольору, ґрунтування, фарбування в камері, полірування.",
+    duration: 360,
+    price: 7500,
+    provider: "СТО IRON MASTER",
+    category: "kuzov",
+    masterName: "Дмитро Петренко",
+    available: true,
+  },
+  {
+    id: "kuzov-povne-farbuvannya",
+    name: "Повне фарбування автомобіля",
+    description: "Повне перефарбування кузова з розбиранням. Якісні матеріали європейських виробників. Гарантія 3 роки.",
+    duration: 2880,
+    price: 45000,
+    provider: "СТО IRON MASTER",
+    category: "kuzov",
+    masterName: "Дмитро Петренко",
+    available: true,
+  },
+  {
+    id: "kuzov-pdr",
+    name: "Рихтування без фарбування (PDR)",
+    description: "Виправлення вм'ятин без порушення заводського покриття (PDR технологія). Швидко, якісно, без втрати якості.",
+    duration: 120,
+    price: 2500,
+    provider: "СТО IRON MASTER",
+    category: "kuzov",
+    masterName: "Олександр Коваль",
+    available: true,
+  },
+  {
+    id: "slyusar-zamena-masla",
+    name: "Заміна моторної оливи + фільтр",
+    description: "Заміна моторної оливи та масляного фільтра. Рекомендовано кожні 10 000 км. Якісні масла Shell, Castrol, Mobil.",
+    duration: 45,
+    price: 800,
+    provider: "СТО IRON MASTER",
+    category: "slyusar",
+    masterName: "Андрій Гриценко",
+    available: true,
+  },
+  {
+    id: "slyusar-diagnostika",
+    name: "Діагностика ходової частини",
+    description: "Повна перевірка ходової, гальмівної системи, кермового управління. Детальний звіт з фото та рекомендаціями.",
+    duration: 60,
+    price: 500,
+    provider: "СТО IRON MASTER",
+    category: "slyusar",
+    masterName: "Андрій Гриценко",
+    available: true,
+  },
+  {
+    id: "slyusar-kolodky",
+    name: "Заміна гальмівних колодок",
+    description: "Заміна передніх або задніх гальмівних колодок. Оригінальні або якісні аналоги (TRW, Brembo, Ferodo).",
+    duration: 90,
+    price: 1200,
+    provider: "СТО IRON MASTER",
+    category: "slyusar",
+    masterName: "Андрій Гриценко",
+    available: true,
+  },
+  {
+    id: "slyusar-rozval",
+    name: "Розвал-сходження 3D",
+    description: "Комп'ютерний розвал-сходження на 3D стенді. Регулювання кутів установки коліс для рівномірного зносу шин.",
+    duration: 60,
+    price: 700,
+    provider: "СТО IRON MASTER",
+    category: "slyusar",
+    masterName: "Андрій Гриценко",
+    available: true,
+  },
+  {
+    id: "kuzov-poliruvka",
+    name: "Полірування кузова",
+    description: "Відновлювальне полірування кузова. Видалення подряпин, потьмянінь, «павутинки». Захист керамічним покриттям.",
+    duration: 360,
+    price: 6000,
+    provider: "СТО IRON MASTER",
+    category: "kuzov",
+    masterName: "Дмитро Петренко",
+    available: true,
+  },
+  {
+    id: "kuzov-keramika",
+    name: "Керамічне покриття кузова",
+    description: "Нанесення керамічного покриття (9H). Захист від подряпин, УФ, хімії. Ефект тримається до 3 років.",
+    duration: 480,
+    price: 12000,
+    provider: "СТО IRON MASTER",
+    category: "kuzov",
+    masterName: "Дмитро Петренко",
+    available: true,
+  }
+];
+
+export const ADMIN_LOG = [
+  {
+    id: "l1",
+    timestamp: "2026-09-17T10:23:11Z",
+    level: "info" as const,
+    message: "Booking created: iron-master service",
+  },
+  {
+    id: "l2",
+    timestamp: "2026-09-17T09:18:42Z",
+    level: "success" as const,
+    message: "Booking confirmed: iron-master",
+  },
+];
