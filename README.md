@@ -1,131 +1,84 @@
-# 🍽️ Universal Service Template
+# MVP — СТО IRON MASTER
 
-**SaaS-шаблон** для ресторанів, кафе, салонів краси, автомийок, клінік та інших закладів. Один шаблон → багато клієнтів з мінімальними змінами.
+> Покращений MVP для **СТО IRON MASTER** (СТО) на основі [Universal Service Template](https://github.com/Mykhailo-Zhuk/universal-service-template).
 
-## ✨ Що входить
+**Оригінальний сайт:** https://iron-master.com.ua/
+**Дев:** `npm run dev` → http://localhost:3000
 
-- 📱 **QR-меню** — заміна паперового, адмін сам заповнює
-- 📅 **Онлайн-запис** — вибір дати, часу, послуги
-- 💳 **Оплата через QR** — інтеграція з LiqPay/MonoPay
-- 👨‍💼 **Адмін-панель** — управління закладом або мережею
-- 🤖 **Telegram-бот** — сповіщення адміну
-- 🌐 **Багатомовність** (UA / EN / RU) — готова інфраструктура
-- 🎨 **Дизайн у стилі Linear** — чистий, мінімалістичний
-- 📱 **Mobile-first** + Dark/light theme
+## 🎯 Що змінено порівняно з оригіналом
 
-## 🚀 Демо
+✅ Онлайн-запис з вибором дати, часу та послуги
+✅ Каталог 10 послуг з реальними цінами
+✅ Інформація про 4 майстрів
+✅ QR-код для запису з телефону
+✅ Адмін-панель для управління послугами та цінами
+✅ Темна/світла тема
+✅ Mobile-first дизайн
 
-| Сторінка | URL | Опис |
-|---|---|---|
-| Головна | `/` | Landing page |
-| QR-меню | `/menu/demo-restaurant` | 7 категорій, 24 страви |
-| Запис | `/book/haircut-classic` | Online booking |
-| Адмінка | `/admin` | Dashboard з логуванням |
+## 📦 Стек
 
-## 🛠 Tech Stack
+- **Next.js 14** (App Router) + **TypeScript**
+- **Tailwind CSS** + **Framer Motion**
+- **Zod** для валідації форм
+- **next-intl** для i18n (uk/en/ru)
+- Вбудована підтримка **LiqPay / MonoPay** (mock)
+- **Telegram Bot webhook** (готовий до підключення)
+- QR-коди через `qrcode.react`
 
-- **Framework:** Next.js 14 (App Router) + TypeScript
-- **Styling:** Tailwind CSS + shadcn-style components
-- **Animations:** framer-motion
-- **Validation:** Zod
-- **Icons:** Lucide React
-- **i18n:** next-intl (UA/EN/RU)
-- **Deployment:** Vercel
-
-## 📦 Встановлення
+## 🚀 Запуск локально
 
 ```bash
-# 1. Клонуй репозиторій
-git clone https://github.com/Mykhailo-Zhuk/universal-service-template.git
-cd universal-service-template
-
-# 2. Встанови залежності
 npm install
-
-# 3. Запусти dev server
 npm run dev
-# → http://localhost:3000
+# Відкрити http://localhost:3000
 ```
 
-## 🔧 Як адаптувати під нового клієнта
+## 📁 Структура
 
-### 1. Зміни дані ресторану/закладу
-Відредагуй `data/demo.ts`:
-```typescript
-export const demoRestaurant = {
-  id: 'your-restaurant',
-  name: 'Your Restaurant Name',
-  // ... категорії, страви, ціни
-};
+```
+app/
+  page.tsx              # Головна лендинг
+  book/[serviceId]/     # Онлайн-запис на послугу
+  menu/[restaurantId]/  # QR-меню (для ресторанів)
+  admin/                # Адмін-панель
+    page.tsx            # Дашборд
+    bookings/           # Перегляд записів
+    menu/               # Управління меню
+    settings/           # Налаштування бізнесу
+    categories/         # Категорії
+    tables/             # Столи
+    orders/             # Замовлення
+data/
+  demo.ts               # Демо-дані бізнесу (послуги/меню)
+  settings.ts           # Налаштування (адреса, телефон, години)
 ```
 
-### 2. Зміни брендинг
-- Кольори → `tailwind.config.ts` (заміни `indigo-600` на свій primary)
-- Логотип → `public/logo.svg`
-- Назва → `app/layout.tsx` (metadata)
+## 💼 Бізнес-дані
 
-### 3. Підключи реальні дані
-- База даних: PostgreSQL через Supabase
-- Оплата: додай `LiqPay` / `MonoPay` API keys у `.env`
-- Telegram bot: створи через @BotFather, додай `TELEGRAM_BOT_TOKEN` у `.env`
+- **Назва:** СТО IRON MASTER
+- **Категорія:** СТО
+- **Телефон:** +38 (096) 688-14-14
+- **Додатковий:** +38 (096) 519-69-69
+- **Адреса:** Київ, проспект Науки, 51
+- **Графік:** Пн-Пт 9:00-19:00, Сб 09:00-17:00
+- **Кількість послуг/страв:** 10
 
-## 🚢 Деплой на Vercel
+## 💰 Ціни (від Rasty — нового розробника)
 
-### Варіант A: через Vercel CLI
-```bash
-npm i -g vercel
-vercel --prod
-```
+> Я новий на біржі, тому ціни поки нижчі. Після 3-5 клієнтів підніму на 30-50%.
 
-### Варіант B: через GitHub
-1. Fork цей репозиторій
-2. Імпортуй у [Vercel](https://vercel.com/new)
-3. Додай environment variables
-4. Deploy
+| Пакет | Що входить | Ціна | Термін |
+|-------|-----------|------|--------|
+| **MVP** | Лендинг + каталог + онлайн-запис | **$300-800** | 1-3 дні |
+| **Стандарт** | MVP + QR-код + адмін-панель + аналітика | **$800-1500** | 1-2 тижні |
+| **Повний** | Стандарт + SEO + інтеграції (Telegram, оплата) | **$1500-2500** | 3-4 тижні |
+| **Підтримка** | Щомісячна підтримка та дрібні правки | **$50-150/міс** | — |
 
-## 📋 API Endpoints
+## 📞 Контакти розробника
 
-| Method | Endpoint | Опис |
-|---|---|---|
-| GET | `/api/menu/[restaurantId]` | Меню закладу |
-| GET | `/api/book?serviceId=X` | Вільні слоти |
-| POST | `/api/book` | Створити запис |
-| POST | `/api/payment/create` | Створити платіж |
-| POST | `/api/payment/callback` | Callback від LiqPay |
-| POST | `/api/bot/webhook` | Telegram webhook |
-| GET | `/api/bot/log` | Історія команд бота |
+- **Telegram:** [@Zhuk_Mykhailo](https://t.me/Zhuk_Mykhailo)
+- **GitHub:** [@Mykhailo-Zhuk](https://github.com/Mykhailo-Zhuk)
 
-## 💰 Модель монетизації
+## 📄 Ліцензія
 
-| План | Ціна | Що входить |
-|---|---|---|
-| Free | 0 ₴ | QR-меню до 30 позицій |
-| Basic | 500 ₴/міс | + запис + 1 локація |
-| Pro | 1 200 ₴/міс | + мережа + оплата + статистика |
-| Enterprise | Узгоджується | Кастом + POS + CRM |
-
-## 🎯 Цільова аудиторія
-
-- 🍽 Ресторани, кафе, піцерії
-- ☕ Кав'ярні, бари
-- 💅 Салони краси, барбершопи
-- 🚗 Автомийки, шиномонтажі
-- 🏥 Стоматології, клініки
-- 🎾 Спортивні зали
-
-## 📝 License
-
-MIT © [Mykhailo Zhuk](https://github.com/Mykhailo-Zhuk)
-
-## 🤝 Contributing
-
-PRs welcome! Для великих змін — спочатку open an issue.
-
-## 📞 Контакт
-
-- GitHub: [@Mykhailo-Zhuk](https://github.com/Mykhailo-Zhuk)
-- Issues: [github.com/Mykhailo-Zhuk/universal-service-template/issues](https://github.com/Mykhailo-Zhuk/universal-service-template/issues)
-
----
-
-**Зроблено з ❤️ в Україні**
+MIT License — вільне використання з посиланням на автора.
