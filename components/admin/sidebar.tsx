@@ -5,12 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Activity,
-  ShoppingBag,
-  UtensilsCrossed,
-  FolderTree,
   CalendarCheck2,
-  QrCode,
-  Settings,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -31,40 +26,10 @@ const NAV_ITEMS: NavItem[] = [
     match: (p) => p === "/admin" || p === "/admin/",
   },
   {
-    href: "/admin/orders",
-    label: "Orders",
-    icon: ShoppingBag,
-    match: (p) => p.startsWith("/admin/orders"),
-  },
-  {
-    href: "/admin/menu",
-    label: "Menu",
-    icon: UtensilsCrossed,
-    match: (p) => p.startsWith("/admin/menu"),
-  },
-  {
-    href: "/admin/categories",
-    label: "Categories",
-    icon: FolderTree,
-    match: (p) => p.startsWith("/admin/categories"),
-  },
-  {
     href: "/admin/bookings",
     label: "Bookings",
     icon: CalendarCheck2,
     match: (p) => p.startsWith("/admin/bookings"),
-  },
-  {
-    href: "/admin/tables",
-    label: "Tables & QR",
-    icon: QrCode,
-    match: (p) => p.startsWith("/admin/tables"),
-  },
-  {
-    href: "/admin/settings",
-    label: "Settings",
-    icon: Settings,
-    match: (p) => p.startsWith("/admin/settings"),
   },
 ];
 
@@ -131,7 +96,7 @@ function SidebarContent({ onNavigate, pathname }: SidebarContentProps) {
 
       <div className="border-t border-zinc-200 px-6 py-4 text-xs text-muted-foreground dark:border-zinc-800">
         <div className="font-medium">Demo data</div>
-        <div className="mt-1">10 mock orders • 10 tables</div>
+        <div className="mt-1">Booking-based service</div>
       </div>
     </div>
   );

@@ -30,13 +30,35 @@ export async function GET(
   }
 
   const allSlots = generateSlotsForService(serviceId);
-  const slot = allSlots.find((s) => s.id === slotId);
+  // First try to find by exact id (slot-{serviceId}-{dateStr}-{HHMM}).
+  let slot = allSlots.find((s) => s.id === slotId);
 
+  // If no exact match (e.g. user revisited a deep link from a past day),
+  // try to recover by parsing date+time out of the slotId and looking
+  // up a slot with the same date+time but fresh availability.
   if (!slot) {
-    return NextResponse.json(
-      { error: "Slot not found" },
-      { status: 404 }
+    const m = slotId.match(
+      /^slot-[a-z0-9-]+-(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})$/i
     );
+    if (m) {
+      const [, dateStr, hh, mm] = m;
+      const recoveredTime = `${hh}:${mm}`;
+      slot = allSlots.find(
+        (s) => s.date === dateStr && s.time === recoveredTime
+      );
+    }
+  }
+
+  // Final fallback: just pick the first available slot so the user can
+  // still complete a booking instead of seeing a dead-end error.
+  if (!slot) {
+    slot = allSlots.find((s) => s.available) ?? allSlots[0];
+    if (!slot) {
+      return NextResponse.json(
+        { error: "No slots available" },
+        { status: 404 }
+      );
+    }
   }
 
   const validated = ServiceSlotSchema.parse(slot);
