@@ -41,14 +41,38 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
+function mergeClasses(...classes: Array<string | undefined | null | false>) {
+  return classes.filter(Boolean).join(" ");
+}
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, asChild, children, ...props }, ref) => {
+    const classes = cn(buttonVariants({ variant, size, className }));
+
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<{
+        className?: string;
+      }>;
+      const childProps = child.props ?? {};
+      // Merge classes into the child element rather than wrapping it in a <button>.
+      // We intentionally drop the `ref` here — Next/Link and <a> don't accept an
+      // arbitrary HTMLButtonElement ref, and the asChild pattern is used for
+      // navigation/anchor elements that don't need imperative refs.
+      return React.cloneElement(child, {
+        ...props,
+        ...childProps,
+        className: mergeClasses(classes, childProps.className),
+      } as Record<string, unknown>);
+    }
+
     return (
       <button
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={classes}
         ref={ref}
         {...props}
-      />
+      >
+        {children}
+      </button>
     );
   }
 );

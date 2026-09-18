@@ -151,9 +151,9 @@ export default function QuickBookPage() {
       <header className="sticky top-0 z-10 border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
         <div className="mx-auto flex max-w-2xl items-center justify-between px-4 py-3">
           <Button asChild variant="ghost" size="sm">
-            <Link href="/">
-              <ArrowLeft className="h-4 w-4" />
-              На головну
+            <Link href="/" className="inline-flex items-center gap-2">
+              <ArrowLeft className="h-4 w-4 flex-shrink-0" />
+              <span>На головну</span>
             </Link>
           </Button>
           <ThemeToggle />

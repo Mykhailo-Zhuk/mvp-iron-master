@@ -118,9 +118,12 @@ export default function SlotDetailPage({ params }: Props) {
             {error || "This time slot may have expired."}
           </p>
           <Button asChild className="mt-6">
-            <Link href={`/book/${params.serviceId}`}>
-              <ArrowLeft className="h-4 w-4" />
-              Pick another time
+            <Link
+              href={`/book/${params.serviceId}`}
+              className="inline-flex items-center gap-2"
+            >
+              <ArrowLeft className="h-4 w-4 flex-shrink-0" />
+              <span>Pick another time</span>
             </Link>
           </Button>
         </div>
@@ -209,9 +212,12 @@ export default function SlotDetailPage({ params }: Props) {
       <header className="sticky top-0 z-20 border-b border-zinc-200 bg-white/80 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/80">
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
           <Button asChild variant="ghost" size="sm">
-            <Link href={`/book/${params.serviceId}`}>
-              <ArrowLeft className="h-4 w-4" />
-              Back
+            <Link
+              href={`/book/${params.serviceId}`}
+              className="inline-flex items-center gap-2"
+            >
+              <ArrowLeft className="h-4 w-4 flex-shrink-0" />
+              <span>Back</span>
             </Link>
           </Button>
           <ThemeToggle />
